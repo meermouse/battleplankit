@@ -8,3 +8,5 @@ class BattleCanvas extends Component {
     return <ReactCanvasPaint />
   }
 }
+
+export default BattleCanvas;
