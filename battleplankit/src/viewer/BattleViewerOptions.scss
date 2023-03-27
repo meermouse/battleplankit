@@ -1,0 +1,28 @@
+.battleViewerOptions-container {
+    background-color: lightsteelblue;
+    height: 50px;
+    width: 100%;
+}
+
+._1Lxpd {
+    display: none;
+}
+
+.Dropdown-root{
+    padding: 10px 20px 0 20px;
+
+    .Dropdown-control {
+        float: left;
+        margin-bottom: 20px;
+        height: 20px;
+    }
+    &.is-open {
+        .Dropdown-placeholder {
+            display: none;
+        }
+    }
+
+    .Dropdown-menu {
+        position: absolute;
+    }
+}
