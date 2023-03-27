@@ -8,7 +8,7 @@ class BattleViewer extends Component {
     super(props);
     this.onBattlePlanChange = this.onBattlePlanChange.bind(this);
     this.state = {
-      path : ""
+      path : '../../public/Season1/battlelines_drawn.png'
     }
   }
 
@@ -20,8 +20,7 @@ class BattleViewer extends Component {
 
     return <div>
       <BattleViewerOptions onBattlePlanChange={this.onBattlePlanChange} />
-      <img className='battleViewer-map' src={this.state.path} />
-      <BattleCanvas/>
+      <BattleCanvas backgroundImage={this.state.path} width={1250} height={900}/>
     </div>
   }
 }
