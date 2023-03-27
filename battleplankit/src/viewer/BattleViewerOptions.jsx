@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Dropdown from 'react-dropdown';
+import BattlePlanDropdown from '../shared/BattlePlanDropdown.jsx';
 import './BattleViewerOptions.scss';
 
 const options = [
@@ -15,12 +16,12 @@ class BattleViewerOptions extends Component {
     }
 
     onDropDownChange = function(e) {
-        var fullPath = path + e.value;
+        var fullPath = path + e;
         this.props.onBattlePlanChange(fullPath);
     }
     render() {
         return <div className='battleViewerOptions-container'>
-        <Dropdown options={options} onChange={this.onDropDownChange} placeholder="Select an option" />
+        <BattlePlanDropdown options={options} onOptionChanged={this.onDropDownChange} placeholder="Select an option" />
         </div>
     }
 }
