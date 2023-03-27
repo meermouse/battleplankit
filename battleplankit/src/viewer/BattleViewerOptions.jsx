@@ -3,20 +3,26 @@ import Dropdown from 'react-dropdown';
 import './BattleViewerOptions.scss';
 
 const options = [
-    'one', 'two', 'three'
+    'battlelines_drawn.png', 'prize_of_gallet.png'
   ];
 
-const path = "../assets/22 23 Season 1/";
+const path = "../../public/Season1/";
 
 class BattleViewerOptions extends Component {
-  onChange = function(e) {
-    console.log(e);
-  }
-  render() {
-    return <div className='battleViewerOptions-container'>
-        <Dropdown options={options} onChange={this.onChange} placeholder="Select an option" />
-    </div>
-  }
+    constructor(props) {
+        super(props);
+        this.onDropDownChange = this.onDropDownChange.bind(this);
+    }
+
+    onDropDownChange = function(e) {
+        var fullPath = path + e.value;
+        this.props.onBattlePlanChange(fullPath);
+    }
+    render() {
+        return <div className='battleViewerOptions-container'>
+        <Dropdown options={options} onChange={this.onDropDownChange} placeholder="Select an option" />
+        </div>
+    }
 }
 
 export default BattleViewerOptions;
