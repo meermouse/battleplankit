@@ -8,7 +8,7 @@ class BattleViewer extends Component {
     super(props);
     this.onBattlePlanChange = this.onBattlePlanChange.bind(this);
     this.state = {
-      path : '../../public/Season1/battlelines_drawn.png'
+      path : '/Season1/battlelines_drawn.png'
     }
   }
 

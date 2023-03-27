@@ -7,7 +7,7 @@ const options = [
     'battlelines_drawn.png', 'prize_of_gallet.png'
   ];
 
-const path = "../../public/Season1/";
+const path = "./Season1/";
 
 class BattleViewerOptions extends Component {
     constructor(props) {
