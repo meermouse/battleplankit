@@ -1,5 +1,7 @@
+@import '../base/base.scss'; 
+
 .card {
-    width:1250px;
+    width:$base-width;
 }
 
 .battleViewer-map {
