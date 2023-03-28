@@ -3,3 +3,45 @@
     //position: absolute;
     width: $base-width;
 }
+
+.battleCanvas {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: flex-start;
+    position: relative;
+    background-color: #e0e0e0;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    //padding: 20px;
+    margin: 10px;
+    //min-height: 300px;
+    width: 100%;
+    //max-width: 800px;
+
+  .shape {
+    position: absolute;
+
+    &.circle {
+      width: 50px;
+      height: 50px;
+      background-color: #2196f3;
+      border-radius: 50%;
+    }
+
+    &.square {
+      width: 50px;
+      height: 50px;
+      background-color: #f44336;
+    }
+
+    &.oval {
+      width: 80px;
+      height: 50px;
+      background-color: #4caf50;
+      border-radius: 50%;
+    }
+
+    // Add other shape styles as needed
+  }
+}

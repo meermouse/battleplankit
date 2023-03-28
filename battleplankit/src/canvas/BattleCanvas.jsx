@@ -1,4 +1,21 @@
 import React, { Component } from 'react';
+import withDroppable from './withDroppable';
+import './BattleCanvas.scss';
+
+const shapeTarget = {
+  drop(props, monitor) {
+    const item = monitor.getItem();
+    props.onDrop(item);
+  },
+};
+
+function collect(connect, monitor) {
+  return {
+    connectDropTarget: connect.dropTarget(),
+    isOver: monitor.isOver(),
+    canDrop: monitor.canDrop(),
+  };
+}
 
 class BattleCanvas extends Component {
   constructor(props) {
@@ -76,12 +93,17 @@ class BattleCanvas extends Component {
   }
 
   render() {
+    const { children } = this.props;
+
     return (
       <div>
+        <div className='battleCanvas'>
+          {children}
+        </div>
         <canvas ref={this.canvasRef} width={this.props.width} height={this.props.height} />
       </div>
     );
   }
 }
 
-export default BattleCanvas;
+export default withDroppable(BattleCanvas);
