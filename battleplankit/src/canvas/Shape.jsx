@@ -5,9 +5,10 @@ import withDraggable from './withDraggable';
 class Shape extends Component {
   render() {
     const { forwardedRef, ...rest } = this.props;
-
+    const width = this.props.width;
+    const height = this.props.height;
     return (
-      <div id={this.props.id} ref={forwardedRef}>
+      <div id={this.props.id} ref={forwardedRef} style={{ height, width }}>
         {/* Render your customized shape here */}
       </div>
     );

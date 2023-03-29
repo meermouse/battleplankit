@@ -5,7 +5,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import './BattleViewer.scss';
 import Shape from '../canvas/Shape.jsx';
-import { MAP_WIDTH, MAP_HEIGHT } from '../base/utility.js';
+import { MAP_WIDTH, MAP_HEIGHT, mmToPixels } from '../base/utility.js';
 
 class BattleViewer extends Component {
   constructor(props) {
@@ -14,9 +14,9 @@ class BattleViewer extends Component {
     this.state = {
       path : '/Season2/TheJawsOfGallet.webp',
       shapes: [
-        { type: 'circle', height: 50, width: 50 },
-        { type: 'square', height: 50, width: 50 },
-        { type: 'oval', height: 50, width: 80 }        
+        { type: 'circle', height: mmToPixels(32), width: mmToPixels(32), marc: 'oops' },
+        { type: 'square', height: mmToPixels(32), width: mmToPixels(32), marc: 'oops' },
+        { type: 'oval', height: 50, width: 80, marc: 'oops' }        
         // Add more shapes as needed
       ],
       canvasItems: [],
@@ -63,6 +63,8 @@ class BattleViewer extends Component {
         {canvasItems.map((item, index) => (
             <Shape 
               className={'shape ' + item.type} 
+              width={item.width}
+              height={item.height}
               left={item.left}
               top={item.top}
               key={index} 

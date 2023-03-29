@@ -25,7 +25,6 @@ class BattleViewerOptions extends Component {
         super(props);
         this.onDropDownChange = this.onDropDownChange.bind(this);
     }
-    
 
     onDropDownChange = function(e) {
         var fullPath = path + e;
