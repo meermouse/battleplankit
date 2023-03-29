@@ -1,5 +1,6 @@
 import React, { useRef } from 'react';
 import { useDrag } from 'react-dnd';
+import { v4 as uuidv4 } from 'uuid';
 
 const withDraggable = (WrappedComponent) => {
   return function Draggable(props) {
@@ -15,9 +16,9 @@ const withDraggable = (WrappedComponent) => {
         const imageRect = imageRef.current.getBoundingClientRect();
         const clickOffsetX = event.clientX - imageRect.left;
         const clickOffsetY = event.clientY - imageRect.top;
-
+        let uid = imageRef.current.id == "" ? uuidv4() : imageRef.current.id;
         return {
-          id: id,
+          id: uid,
           type: props.type,
           width: imageRect.width,
           height: imageRect.height,

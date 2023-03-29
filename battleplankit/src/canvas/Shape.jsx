@@ -7,7 +7,7 @@ class Shape extends Component {
     const { forwardedRef, ...rest } = this.props;
 
     return (
-      <div ref={forwardedRef}>
+      <div id={this.props.id} ref={forwardedRef}>
         {/* Render your customized shape here */}
       </div>
     );

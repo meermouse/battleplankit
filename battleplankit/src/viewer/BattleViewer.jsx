@@ -14,9 +14,9 @@ class BattleViewer extends Component {
     this.state = {
       path : '/Season2/TheJawsOfGallet.webp',
       shapes: [
-        { id: 1, type: 'circle', height: 50, width: 50 },
-        { id: 2, type: 'square', height: 50, width: 50 },
-        { id: 3, type: 'oval', height: 50, width: 80 }        
+        { type: 'circle', height: 50, width: 50 },
+        { type: 'square', height: 50, width: 50 },
+        { type: 'oval', height: 50, width: 80 }        
         // Add more shapes as needed
       ],
       canvasItems: [],
@@ -28,9 +28,25 @@ class BattleViewer extends Component {
   }
 
   handleDrop = (item, dropCoordinates) => {
-    this.setState((prevState) => ({
-      canvasItems: [...prevState.canvasItems, { ...item, ...dropCoordinates }],
-    }));
+    this.setState((prevState) => {
+      const itemExists = prevState.canvasItems.some(
+        (canvasItem) => canvasItem.id === item.id
+      );
+    
+      if (itemExists) {
+        // If the item exists, update the item
+        return {
+          canvasItems: prevState.canvasItems.map((canvasItem) =>
+            canvasItem.id === item.id ? { ...item, ...dropCoordinates } : canvasItem
+          ),
+        };
+      } else {
+        // If the item does not exist, add it to the collection
+        return {
+          canvasItems: [...prevState.canvasItems, { ...item, ...dropCoordinates }],
+        };
+      }
+    });
   };
 
   render() {
@@ -39,8 +55,8 @@ class BattleViewer extends Component {
       <BattleViewerOptions onBattlePlanChange={this.onBattlePlanChange} />
       <DndProvider backend={HTML5Backend}>
         <div className="shape-container">
-          {shapes.map((shape) => (
-            <Shape className={'shape ' + shape.type} key={shape.id} id={shape.id} type={shape.type} />
+          {shapes.map((shape, index) => (
+            <Shape className={'shape ' + shape.type} key={index} id={shape.id} type={shape.type} />
           ))}
         </div>
         <BattleCanvas onDrop={this.handleDrop} backgroundImage={this.state.path} width={MAP_WIDTH} height={MAP_HEIGHT}>
