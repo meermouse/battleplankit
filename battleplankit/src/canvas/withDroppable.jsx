@@ -15,8 +15,8 @@ const withDroppable = (WrappedComponent) => {
         const e = monitor.getClientOffset();
         const wrappedComponentRect = wrappedComponentRef.current.getCanvasBoundingClientRect();
         const dropCoordinates = {
-          left: e.x - wrappedComponentRect.left,
-          top: e.y - wrappedComponentRect.top,
+          left: e.x - wrappedComponentRect.left - item.clickOffsetX,
+          top: e.y - wrappedComponentRect.top - item.clickOffsetY,
         };
 
         props.onDrop(item, dropCoordinates);

@@ -4,12 +4,18 @@ import withDraggable from './withDraggable';
 
 class Shape extends Component {
   render() {
+    const { forwardedRef, ...rest } = this.props;
+
     return (
-      <div>
+      <div ref={forwardedRef}>
         {/* Render your customized shape here */}
       </div>
     );
   }
 }
 
-export default withDraggable(Shape);
+const ShapeWithRef = React.forwardRef((props, ref) => {
+  return <Shape {...props} forwardedRef={ref} />;
+});
+
+export default withDraggable(ShapeWithRef);

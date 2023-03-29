@@ -14,9 +14,9 @@ class BattleViewer extends Component {
     this.state = {
       path : '/Season2/TheJawsOfGallet.webp',
       shapes: [
-        { id: 1, type: 'circle' },
-        { id: 2, type: 'square' },
-        { id: 3, type: 'oval' }        
+        { id: 1, type: 'circle', height: 50, width: 50 },
+        { id: 2, type: 'square', height: 50, width: 50 },
+        { id: 3, type: 'oval', height: 50, width: 80 }        
         // Add more shapes as needed
       ],
       canvasItems: [],
