@@ -11,7 +11,7 @@ class BattleViewer extends Component {
     super(props);
     this.onBattlePlanChange = this.onBattlePlanChange.bind(this);
     this.state = {
-      path : '/Season1/battlelines_drawn.png',
+      path : '/Season2/TheJawsOfGallet.webp',
       shapes: [
         { id: 1, type: 'circle' },
         { id: 2, type: 'square' },

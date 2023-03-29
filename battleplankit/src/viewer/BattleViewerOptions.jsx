@@ -4,16 +4,28 @@ import BattlePlanDropdown from '../shared/BattlePlanDropdown.jsx';
 import './BattleViewerOptions.scss';
 
 const options = [
-    'battlelines_drawn.png', 'prize_of_gallet.png'
+    'BattlelinesDrawn.webp', 
+    'InThePresenceOfIdols.webp',
+    'OnlyTheWorthy.webp',
+    'OursForTheTaking.webp',
+    'PathOfAChampion.webp',
+    'PositionOverPower.webp',
+    'TheJawsOfGallet.webp',
+    'TheLurkersBelow.webp',
+    'TheNidusPaths.webp',
+    'ThePrizeOfGallet.webp',
+    'TheRealmstoneCache.webp',
+    'TwistsAndTurns.webp'
   ];
 
-const path = "./Season1/";
+const path = "./Season2/";
 
 class BattleViewerOptions extends Component {
     constructor(props) {
         super(props);
         this.onDropDownChange = this.onDropDownChange.bind(this);
     }
+    
 
     onDropDownChange = function(e) {
         var fullPath = path + e;
