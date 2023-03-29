@@ -2,21 +2,6 @@ import React, { Component } from 'react';
 import withDroppable from './withDroppable';
 import './BattleCanvas.scss';
 
-const shapeTarget = {
-  drop(props, monitor) {
-    const item = monitor.getItem();
-    props.onDrop(item);
-  },
-};
-
-function collect(connect, monitor) {
-  return {
-    connectDropTarget: connect.dropTarget(),
-    isOver: monitor.isOver(),
-    canDrop: monitor.canDrop(),
-  };
-}
-
 class BattleCanvas extends Component {
   constructor(props) {
     super(props);
@@ -90,6 +75,10 @@ class BattleCanvas extends Component {
       canvas.removeEventListener('mouseup', stopDrawing);
       canvas.removeEventListener('mouseout', stopDrawing);
     };
+  }
+
+  getCanvasBoundingClientRect() {
+    return this.canvasRef.current.getBoundingClientRect();
   }
 
   render() {

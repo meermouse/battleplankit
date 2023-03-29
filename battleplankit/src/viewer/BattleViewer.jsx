@@ -5,6 +5,7 @@ import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import './BattleViewer.scss';
 import Shape from '../canvas/Shape.jsx';
+import { MAP_WIDTH, MAP_HEIGHT } from '../base/utility.js';
 
 class BattleViewer extends Component {
   constructor(props) {
@@ -42,7 +43,7 @@ class BattleViewer extends Component {
             <Shape className={'shape ' + shape.type} key={shape.id} id={shape.id} type={shape.type} />
           ))}
         </div>
-        <BattleCanvas onDrop={this.handleDrop} backgroundImage={this.state.path} width={1250} height={900}>
+        <BattleCanvas onDrop={this.handleDrop} backgroundImage={this.state.path} width={MAP_WIDTH} height={MAP_HEIGHT}>
         {canvasItems.map((item, index) => (
             <Shape 
               className={'shape ' + item.type} 
