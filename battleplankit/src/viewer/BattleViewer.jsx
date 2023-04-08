@@ -1,22 +1,22 @@
 import React, { Component } from 'react'
 import BattleCanvas from '../canvas/BattleCanvas.jsx'
 import BattleViewerOptions from './BattleViewerOptions'
+import BattleShapeConstructor from './BattleShapeConstructor.jsx'
 import { DndProvider } from 'react-dnd';
 import { HTML5Backend } from 'react-dnd-html5-backend';
 import './BattleViewer.scss';
 import Shape from '../canvas/Shape.jsx';
 import { MAP_WIDTH, MAP_HEIGHT, mmToPixels } from '../base/utility.js';
 
-class BattleViewer extends Component {
+class BattleViewer extends Component { 
   constructor(props) {
     super(props);
     this.onBattlePlanChange = this.onBattlePlanChange.bind(this);
     this.state = {
       path : '/Season2/TheJawsOfGallet.webp',
       shapes: [
-        { type: 'circle', height: mmToPixels(32), width: mmToPixels(32), marc: 'oops' },
-        { type: 'square', height: mmToPixels(32), width: mmToPixels(32), marc: 'oops' },
-        { type: 'oval', height: 50, width: 80, marc: 'oops' }        
+        { type: 'circle', height: 50, width: 50 },
+        { type: 'oval', height: 50, width: 80 }        
         // Add more shapes as needed
       ],
       canvasItems: [],
@@ -54,11 +54,7 @@ class BattleViewer extends Component {
     return <div>
       <BattleViewerOptions onBattlePlanChange={this.onBattlePlanChange} />
       <DndProvider backend={HTML5Backend}>
-        <div className="shape-container">
-          {shapes.map((shape, index) => (
-            <Shape className={'shape ' + shape.type} key={index} id={shape.id} type={shape.type} />
-          ))}
-        </div>
+        <BattleShapeConstructor />
         <BattleCanvas onDrop={this.handleDrop} backgroundImage={this.state.path} width={MAP_WIDTH} height={MAP_HEIGHT}>
         {canvasItems.map((item, index) => (
             <Shape 
