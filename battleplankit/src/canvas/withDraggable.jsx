@@ -42,8 +42,6 @@ const withDraggable = (WrappedComponent) => {
     const opacity = isDragging ? 0.5 : 1;
     const top = props.top;
     const left = props.left;
-    console.log(props.width);
-    console.log(props.isMenu);
     const width = (props.isMenu ?? false) ? null : mmToPixels(props.width);
     const height = (props.isMenu ?? false) ? null : mmToPixels(props.height);
     const className = `shape ${props.type}`;

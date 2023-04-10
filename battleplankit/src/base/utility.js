@@ -21,3 +21,17 @@ export const inchesToPixels = (inches) => {
 export const stripMM = (inputString) => {
     return inputString.replace(/mm/g, '');
 }
+
+export const parseDimensions = (dimensions) => {
+    const regex = /^(\d+)x(\d+)mm$/;
+    const match = dimensions.match(regex);
+  
+    if (match) {
+      return {
+        width: `${match[1]}mm`,
+        height: `${match[2]}mm`,
+      };
+    }
+  
+    throw new Error("Invalid dimensions format");
+};
