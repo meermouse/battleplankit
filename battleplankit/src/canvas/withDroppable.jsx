@@ -18,7 +18,6 @@ const withDroppable = (WrappedComponent) => {
           left: e.x - wrappedComponentRect.left - item.clickOffsetX,
           top: e.y - wrappedComponentRect.top - item.clickOffsetY,
         };
-
         props.onDrop(item, dropCoordinates);
       },
       collect: (monitor) => ({

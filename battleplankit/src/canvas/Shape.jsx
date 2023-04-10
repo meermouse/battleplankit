@@ -8,7 +8,7 @@ class Shape extends Component {
     const isOval = type === 'oval';
 
     return (
-      <div className={`${text ? 'shape-size' : ''}`} ref={this.props.forwardedRef}>
+      <div id={this.props.id} className={`${text ? 'shape-size' : ''}`} ref={this.props.forwardedRef}>
         {isCircle && <div className="circle-shape"></div>}
         {isOval && <div className="oval-shape"></div>}
         {text && <div className="shape-size-text">{text}</div>}

@@ -32,7 +32,6 @@ class BattleViewer extends Component {
       const itemExists = prevState.canvasItems.some(
         (canvasItem) => canvasItem.id === item.id
       );
-    
       if (itemExists) {
         // If the item exists, update the item
         return {

@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import BaseShape from '../canvas/BaseShape.jsx';
 import ShapeSize from '../canvas/ShapeSize.jsx';
 import './BattleShapeSelecter.scss';
+import { stripMM } from '../base/utility.js';
 
 class BattleShapeSelecter extends Component {
     constructor(props) {
@@ -61,7 +62,15 @@ class BattleShapeSelecter extends Component {
           <div className={"shape-size-base " + (shapeSize.hidden ? 'hidden' : '')} key={index1}>
               {shapeSize.sizes.map((shapeSizeSize, index2) => (
                 <span className='shape-size-base-shape' key={index2}>
-                  <ShapeSize text={shapeSizeSize} className={'shape-size shape ' + shapeSize.type} id={shapeSize.id} type={shapeSize.type} />
+                  <ShapeSize 
+                    text={shapeSizeSize} 
+                    className={'shape-size shape ' + shapeSize.type} 
+                    id={shapeSize.id} 
+                    type={shapeSize.type} 
+                    width={stripMM(shapeSizeSize)}
+                    height={stripMM(shapeSizeSize)}
+                    isMenu={true}
+                    />
                 </span>
               ))}
           </div>
