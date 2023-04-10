@@ -13,3 +13,7 @@ export const mmToPixels = (inches) => {
 export const inchesToPixels = (inches) => {
     return (MAP_WIDTH / WIDTH_INCHES) * inches;
 };
+
+export const stripMM = (inputString) => {
+    return inputString.replace(/mm/g, '');
+}

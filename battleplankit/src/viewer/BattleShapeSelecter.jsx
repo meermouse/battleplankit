@@ -57,11 +57,11 @@ class BattleShapeSelecter extends Component {
           </div>
         ))}
         {
-          shapeSizes.map((shapeSize, index) => (
-          <div className={"shape-size-base " + (shapeSize.hidden ? 'hidden' : '')} key={index}>
-              {shapeSize.sizes.map((shapeSizeSize, index) => (
-                <span className='shape-size-base-shape'>
-                  <Shape className={'shape-size shape ' + shapeSize.type} key={index} id={shapeSize.id} type={shapeSize.type} />
+          shapeSizes.map((shapeSize, index1) => (
+          <div className={"shape-size-base " + (shapeSize.hidden ? 'hidden' : '')} key={index1}>
+              {shapeSize.sizes.map((shapeSizeSize, index2) => (
+                <span className='shape-size-base-shape' key={index2}>
+                  <Shape text={shapeSizeSize} className={'shape-size shape ' + shapeSize.type} id={shapeSize.id} type={shapeSize.type} />
                 </span>
               ))}
           </div>

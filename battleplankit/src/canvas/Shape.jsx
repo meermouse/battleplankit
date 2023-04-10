@@ -1,15 +1,17 @@
 import React, { Component } from 'react';
 import withDraggable from './withDraggable';
-//import './Shape.scss';
 
 class Shape extends Component {
   render() {
-    const { forwardedRef, ...rest } = this.props;
-    const width = this.props.width;
-    const height = this.props.height;
+    const { type, text } = this.props;
+    const isCircle = type === 'circle';
+    const isOval = type === 'oval';
+
     return (
-      <div id={this.props.id} ref={forwardedRef} style={{ height, width }}>
-        {/* Render your customized shape here */}
+      <div className={`${text ? 'shape-size' : ''}`} ref={this.props.forwardedRef}>
+        {isCircle && <div className="circle-shape"></div>}
+        {isOval && <div className="oval-shape"></div>}
+        {text && <div className="shape-size-text">{text}</div>}
       </div>
     );
   }
