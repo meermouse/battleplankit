@@ -9,7 +9,7 @@ class BattleShapeConstructor extends Component {
             <div className="shape-base-container">
               <BattleShapeSelecter />
             </div>
-        </div>
+        </div> 
     }
 }
 
