@@ -42,8 +42,17 @@ const withDraggable = (WrappedComponent) => {
     const opacity = isDragging ? 0.5 : 1;
     const top = props.top;
     const left = props.left;
-    const width = (props.isMenu ?? false) ? null : mmToPixels(props.width);
-    const height = (props.isMenu ?? false) ? null : mmToPixels(props.height);
+    // Only convert if value is a string ending in 'mm', otherwise use as-is
+    const width = (props.isMenu ?? false)
+      ? null
+      : (typeof props.width === 'string' && props.width.endsWith('mm')
+          ? mmToPixels(props.width)
+          : props.width);
+    const height = (props.isMenu ?? false)
+      ? null
+      : (typeof props.height === 'string' && props.height.endsWith('mm')
+          ? mmToPixels(props.height)
+          : props.height);
     const className = `shape ${props.type}`;
     return (
       <div ref={drag} className={className} style={{ opacity, top, left, width, height }}>

@@ -1,21 +1,28 @@
 
 
-const HEIGHT_INCHES = 22;
-const WIDTH_INCHES = 30;
+const HEIGHT_INCHES = 44;
+const WIDTH_INCHES = 60;
 
 const INCHES_TO_MM = 25.4;
 
 export const MAP_HEIGHT = 900;
 export const MAP_WIDTH = 1250;
-export const mmToPixels = (input) => {
+// axis: 'width' or 'height'
+export const mmToPixels = (input, axis = 'width') => {
+    let mm = input;
     if (typeof input === "string" && input.endsWith("mm")) {
-      const inches = parseFloat(input.slice(0, -2));
-      return ((MAP_WIDTH / (WIDTH_INCHES * INCHES_TO_MM)) * inches) + "px";
+      mm = parseFloat(input.slice(0, -2));
     }
-    return input;
-  };
-export const inchesToPixels = (inches) => {
-    return ((MAP_WIDTH / WIDTH_INCHES) * inches)  + "px";
+    const pxPerMm = axis === 'height'
+      ? MAP_HEIGHT / (HEIGHT_INCHES * INCHES_TO_MM)
+      : MAP_WIDTH / (WIDTH_INCHES * INCHES_TO_MM);
+    return mm * pxPerMm;
+};
+export const inchesToPixels = (inches, axis = 'width') => {
+    const pxPerInch = axis === 'height'
+      ? MAP_HEIGHT / HEIGHT_INCHES
+      : MAP_WIDTH / WIDTH_INCHES;
+    return inches * pxPerInch;
 };
 
 export const stripMM = (inputString) => {
@@ -25,13 +32,11 @@ export const stripMM = (inputString) => {
 export const parseDimensions = (dimensions) => {
     const regex = /^(\d+)x(\d+)mm$/;
     const match = dimensions.match(regex);
-  
     if (match) {
       return {
-        width: `${match[1]}mm`,
-        height: `${match[2]}mm`,
+        width: mmToPixels(match[1], 'width'),
+        height: mmToPixels(match[2], 'height'),
       };
     }
-  
     throw new Error("Invalid dimensions format");
 };
