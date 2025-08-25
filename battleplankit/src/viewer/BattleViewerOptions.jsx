@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import Dropdown from 'react-dropdown';
+import ObjectTypeSelector from './ObjectTypeSelector';
 import BattlePlanDropdown from '../shared/BattlePlanDropdown.jsx';
 import './BattleViewerOptions.scss';
 
@@ -32,7 +33,8 @@ class BattleViewerOptions extends Component {
     }
     render() {
         return <div className='battleViewerOptions-container'>
-        <BattlePlanDropdown options={options} onOptionChanged={this.onDropDownChange} placeholder="Select an option" />
+            <BattlePlanDropdown options={options} onOptionChanged={this.onDropDownChange} placeholder="Select an option" />
+            <ObjectTypeSelector />
         </div>
     }
 }
