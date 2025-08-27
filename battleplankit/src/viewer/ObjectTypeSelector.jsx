@@ -11,12 +11,23 @@ class ObjectTypeSelector extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            selectedType: options[0]
+            selectedType: options[0],
+            selectedSize: ''
         };
     }
 
     handleTypeChange = (e) => {
-        this.setState({ selectedType: e.target.value });
+        const newType = e.target.value;
+        this.setState({ selectedType: newType });
+    }
+
+    handleSizeChange = (size) => {
+        this.setState({ selectedSize: size });
+    }
+
+    handleButtonClick = () => {
+        const { selectedType, selectedSize } = this.state;
+        alert(`Type: ${selectedType}, Size: ${selectedSize}`);
     }
 
     render() {
@@ -27,7 +38,8 @@ class ObjectTypeSelector extends Component {
                         <option key={option} value={option}>{option}</option>
                     ))}
                 </select>
-                <ObjectSizeSelector objectType={this.state.selectedType} />
+                <ObjectSizeSelector objectType={this.state.selectedType} onSizeChange={this.handleSizeChange} />
+                <button onClick={this.handleButtonClick}>Add Shape</button>
             </div>
         );
     }

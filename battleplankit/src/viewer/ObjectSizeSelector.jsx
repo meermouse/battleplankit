@@ -21,11 +21,35 @@ const ovalSizes = [
 ];
 
 class ObjectSizeSelector extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            selectedSize: (props.objectType === 'Rounds' ? roundSizes[0] : ovalSizes[0])
+        };
+    }
+
+    componentDidUpdate(prevProps) {
+        if (prevProps.objectType !== this.props.objectType) {
+            const newSize = this.props.objectType === 'Rounds' ? roundSizes[0] : ovalSizes[0];
+            this.setState({ selectedSize: newSize });
+            if (this.props.onSizeChange) {
+                this.props.onSizeChange(newSize);
+            }
+        }
+    }
+
+    handleSizeChange = (e) => {
+        this.setState({ selectedSize: e.target.value });
+        if (this.props.onSizeChange) {
+            this.props.onSizeChange(e.target.value);
+        }
+    }
+
     render() {
         const { objectType } = this.props;
         const options = objectType === 'Rounds' ? roundSizes : ovalSizes;
         return (
-            <select className="object-size-dropdown">
+            <select className="object-size-dropdown" value={this.state.selectedSize} onChange={this.handleSizeChange}>
                 {options.map(option => (
                     <option key={option} value={option}>{option}</option>
                 ))}
