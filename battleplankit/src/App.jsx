@@ -12,4 +12,3 @@ function App() {
 }
 
 export default App
-//TODO: this should appear in review

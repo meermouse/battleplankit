@@ -14,3 +14,5 @@ class BattleShapeConstructor extends Component {
 }
 
 export default BattleShapeConstructor;
+
+//TODO: this should appear in review
