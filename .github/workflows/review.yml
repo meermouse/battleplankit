@@ -1,9 +1,15 @@
+# .github/workflows/review.yml
 name: Code Review
 
 on:
   pull_request:
     types: [opened, synchronize, reopened, ready_for_review]
   workflow_dispatch:
+
+# Make every `run:` default to the subfolder with package.json/lockfile
+defaults:
+  run:
+    working-directory: battleplankit
 
 jobs:
   review:
@@ -16,20 +22,23 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - name: Debug file structure
+      # Quick sanity check of paths
+      - name: Debug paths
         run: |
           echo "PWD: $(pwd)"
           ls -la
+          echo "---- battleplankit ----"
+          ls -la battleplankit
 
-      - name: Set up Node
+      - name: Set up Node (with npm cache)
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          node-version: '20'
+          cache: 'npm'
+          cache-dependency-path: 'battleplankit/package-lock.json'
 
-      - name: Install dependencies
+      - name: Install deps (uses battleplankit/package-lock.json)
         run: npm ci
-        working-directory: .
 
-      - name: Run Linter
+      - name: Run linter
         run: npm run lint
-        working-directory: .
