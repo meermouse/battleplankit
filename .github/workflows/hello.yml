@@ -1,0 +1,12 @@
+name: Hello World
+
+on:
+  workflow_dispatch:  # allows you to trigger it manually from the Actions tab
+
+jobs:
+  say_hello:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Say Hello
+        run: echo "👋 Hello from GitHub Actions!"
