@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
-    "lint": "eslint \"src/**/*.{js,jsx,ts,tsx}\""
+    "lint": "eslint \"battleplankit/src/**/*.{js,jsx,ts,tsx}\""
   },
   "dependencies": {
     "latest": "^0.2.0",
