@@ -1,0 +1,20 @@
+rules:
+  - id: no-todo-leftovers
+    description: "Remove TODOs before merging."
+    files: ["**/*.{ts,tsx,js,py,go}"]
+    pattern: "TODO"
+    severity: warning
+    exclude_paths: ["**/test/**", "**/*.md"]
+
+  - id: forbid-console-log
+    description: "Use logger instead of console.log."
+    files: ["**/*.{ts,tsx,js}"]
+    regex: "(^|\\s)console\\.log\\("
+    severity: error
+
+  - id: enforce-function-length
+    description: "Functions should be <= 50 lines."
+    files: ["**/*.{ts,tsx,js,py}"]
+    kind: "function-length"
+    max_lines: 50
+    severity: warning

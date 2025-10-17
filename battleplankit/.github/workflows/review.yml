@@ -1,0 +1,66 @@
+name: PR Review (Linters + Semgrep + Custom Rules)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  workflow_dispatch:
+
+jobs:
+  review:
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pull-requests: write  # needed to comment
+      checks: write
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set up Node for custom checker
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Install tooling
+        run: |
+          npm -g i markdownlint-cli cspell
+          # If JS/TS:
+          npm i
+          # If Python:
+          python3 -m pip install --upgrade pip
+          python3 -m pip install flake8
+          # Semgrep:
+          python3 -m pip install semgrep
+
+      # --- LINTERS / FORMATTERS (customize as needed) ---
+      - name: ESLint (JS/TS)
+        if: hashFiles('**/package.json') != ''
+        run: npx eslint . -f junit -o eslint-report.xml || true
+
+      - name: flake8 (Python)
+        if: hashFiles('**/pyproject.toml','**/setup.cfg','**/tox.ini','**/.flake8') != ''
+        run: flake8 . || true
+
+      - name: Markdownlint
+        run: markdownlint "**/*.md" || true
+
+      - name: CSpell
+        run: cspell --no-progress --no-summary "**/*" || true
+
+      # --- SEMGREP with team rules ---
+      - name: Semgrep
+        run: semgrep --config ./.semgrep.yml --error || true
+
+      # --- CUSTOM RULES (team-editable YAML) ---
+      - name: Run custom rule checker
+        run: node scripts/custom-rulecheck.mjs
+
+      # --- Report status checks nicely (optional) ---
+      - name: Upload ESLint report
+        if: always() && hashFiles('eslint-report.xml') != ''
+        uses: mikepenz/action-junit-report@v4
+        with:
+          report_paths: eslint-report.xml
+          check_name: "ESLint"
+
